@@ -1,0 +1,20 @@
+[package]
+name = "opentelemetry-proto-native"
+version = "0.1.0"
+edition = "2024"
+
+[lib]
+name = "opentelemetry_proto_native"
+crate-type = ["cdylib"]
+
+[dependencies]
+prost = "0.13"
+
+[dependencies.pyo3]
+version = "0.28.2"
+# "abi3-py39" tells pyo3 (and maturin) to build using the stable ABI with minimum Python version 3.9
+features = ["abi3-py39"]
+
+[build-dependencies]
+# prost-build runs at compile time to turn .proto files into Rust structs
+prost-build = "0.13"

@@ -1,0 +1,36 @@
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "opentelemetry-proto-native"
+version = "0.1.0"
+description = "OpenTelemetry Protobuf Native"
+readme = "README.md"
+authors = [
+    { name = "Lukas Hering", email = "lukasheringb@gmail.com" }
+]
+requires-python = ">=3.9"
+dependencies = [
+    "opentelemetry-api>=1.41.0",
+    "opentelemetry-sdk>=1.41.0",
+]
+
+
+[tool.maturin]
+python-source = "src"
+module-name = "opentelemetry.proto_native._rs"
+
+[tool.uv]
+cache-keys = [
+    { file = "rust/Cargo.toml" },
+    { file = "rust/Cargo.lock" },
+    { file = "rust/src/**" },
+]
+
+[dependency-groups]
+dev = [
+    "opentelemetry-exporter-otlp-proto-common>=1.41.0",
+    "pytest>=8.4.2",
+    "pytest-benchmark>=5.2.3",
+]
